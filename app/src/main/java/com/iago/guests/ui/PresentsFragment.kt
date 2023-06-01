@@ -1,4 +1,4 @@
-package com.iago.guests.ui.home
+package com.iago.guests.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.iago.guests.databinding.FragmentAllGuestsBinding
+import com.iago.guests.databinding.FragmentPresentsBinding
 
-class AllGuestsFragment : Fragment() {
+class PresentsFragment : Fragment() {
   
-  private var _binding: FragmentAllGuestsBinding? = null
+  private var _binding: FragmentPresentsBinding? = null
   
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -23,12 +23,12 @@ class AllGuestsFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     val viewModel =
-      ViewModelProvider(this).get(AllGuestsViewModel::class.java)
+      ViewModelProvider(this).get(PresentsViewModel::class.java)
     
-    _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
+    _binding = FragmentPresentsBinding.inflate(inflater, container, false)
     val root: View = binding.root
     
-    val textView: TextView = binding.textAllGuests
+    val textView: TextView = binding.textPresents
     viewModel.text.observe(viewLifecycleOwner) {
       textView.text = it
     }
