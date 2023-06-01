@@ -1,4 +1,4 @@
-package com.iago.guests
+package com.iago.guests.model
 
 data class GuestModel(
   val id: Int,

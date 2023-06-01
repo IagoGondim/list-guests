@@ -1,7 +1,8 @@
 package com.iago.guests.repository
 
+import android.content.ContentValues
 import android.content.Context
-import com.iago.guests.GuestModel
+import com.iago.guests.model.GuestModel
 
 class GuestRepository private constructor(context: Context) {
   
@@ -11,7 +12,6 @@ class GuestRepository private constructor(context: Context) {
     
     private lateinit var repository: GuestRepository
     
-    
     fun getInstacen(context: Context): GuestRepository {
       if (Companion::repository.isInitialized) {
         repository = GuestRepository(context)
@@ -20,8 +20,16 @@ class GuestRepository private constructor(context: Context) {
     }
   }
   
-  fun insert() {
-  
+  fun insert(guest: GuestModel) {
+    val db = guestDataBase.writableDatabase
+    
+    val presence = if (guest.presence) 1 else 0
+    
+    val values = ContentValues()
+    values.put("name", guest.name)
+    values.put("presence", presence)
+    
+    db.insert("Guest", null, values)
   }
   
   fun update() {
