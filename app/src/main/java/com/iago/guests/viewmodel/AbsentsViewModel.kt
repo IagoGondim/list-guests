@@ -1,4 +1,4 @@
-package com.iago.guests.ui
+package com.iago.guests.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

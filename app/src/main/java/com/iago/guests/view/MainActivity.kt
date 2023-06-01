@@ -1,4 +1,4 @@
-package com.iago.guests
+package com.iago.guests.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.iago.guests.R
 import com.iago.guests.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

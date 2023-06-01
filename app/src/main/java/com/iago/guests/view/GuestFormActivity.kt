@@ -1,10 +1,13 @@
-package com.iago.guests
+package com.iago.guests.view
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.iago.guests.R
 import com.iago.guests.databinding.ActivityGuestFormBinding
+import com.iago.guests.viewmodel.GuestFormViewModel
+
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
   
