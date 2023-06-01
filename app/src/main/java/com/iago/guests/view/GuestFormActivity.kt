@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.iago.guests.GuestModel
 import com.iago.guests.R
 import com.iago.guests.databinding.ActivityGuestFormBinding
 import com.iago.guests.viewmodel.GuestFormViewModel
@@ -28,7 +29,6 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
   
   override fun onClick(view: View) {
     if (view.id == R.id.button_save) {
-    
     }
   }
 }

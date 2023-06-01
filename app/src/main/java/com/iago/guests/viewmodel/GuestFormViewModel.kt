@@ -1,11 +1,12 @@
 package com.iago.guests.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import com.iago.guests.repository.GuestRepository
 
-class GuestFormViewModel : ViewModel() {
+class GuestFormViewModel(application: Application) : AndroidViewModel(application) {
   
-  private val repository = GuestRepository.getInstacen()
+  private val repository = GuestRepository.getInstacen(application)
   
   
 }

@@ -8,6 +8,8 @@ class GuestDataBase(
   context: Context,
 ) : SQLiteOpenHelper(context, NAME, null, VERSION) {
   
+  
+  
   companion object {
     private const val NAME = "guestdb"
     private const val VERSION = 1
