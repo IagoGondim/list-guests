@@ -21,7 +21,7 @@ class AbsentsFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     val viewModel =
-      ViewModelProvider(this)[AbsentsViewModel::class.java]
+      ViewModelProvider(this).get(AbsentsViewModel::class.java)
     
     _binding = FragmentAbsentsBinding.inflate(inflater, container, false)
     val root: View = binding.root

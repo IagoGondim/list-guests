@@ -20,31 +20,16 @@ class MainActivity : AppCompatActivity() {
   
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
     
     setSupportActionBar(binding.appBarMain.toolbar)
-    
-    binding.appBarMain.fab.setOnClickListener { view ->
-      startActivity(Intent(this, GuestFormActivity::class.java))
+  
+    binding.appBarMain.fab.setOnClickListener {
+      startActivity(Intent(applicationContext, GuestFormActivity::class.java))
     }
     setupNavigation()
   }
-  
-  /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    menuInflater.inflate(R.menu.main, menu)
-    return true
-  }
-  
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.itemId == R.id.action_settings) {
-    
-    }
-    return super.onOptionsItemSelected(item)
-  }
- */
   
   override fun onSupportNavigateUp(): Boolean {
     val navController = findNavController(R.id.nav_host_fragment_content_main)

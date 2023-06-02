@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.iago.guests.R
 import com.iago.guests.databinding.ActivityGuestFormBinding
+import com.iago.guests.model.GuestModel
 import com.iago.guests.viewmodel.GuestFormViewModel
 
 
@@ -19,7 +20,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
     
     binding = ActivityGuestFormBinding.inflate(layoutInflater)
     setContentView(binding.root)
-    
+  
     viewModel = ViewModelProvider(this).get(GuestFormViewModel::class.java)
     
     binding.buttonSave.setOnClickListener(this)
@@ -28,6 +29,11 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
   
   override fun onClick(view: View) {
     if (view.id == R.id.button_save) {
+      val name = binding.editName.text.toString()
+      val presence = binding.radioPresent.isChecked
+      
+      val model = GuestModel(0, name, presence)
+      viewModel.insert(model)
     }
   }
 }
