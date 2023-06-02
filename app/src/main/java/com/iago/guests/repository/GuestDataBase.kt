@@ -3,6 +3,7 @@ package com.iago.guests.repository
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.iago.guests.constants.DataBaseConstants
 
 class GuestDataBase(
   context: Context,
@@ -16,10 +17,10 @@ class GuestDataBase(
   
   override fun onCreate(db: SQLiteDatabase) {
     db.execSQL(
-      "CREATE TABLE Guest " +
-              "(id integer primary key autoincrement, " +
-              "name text, " +
-              "presence integer);"
+      "CREATE TABLE " + DataBaseConstants.GUEST.TABLE_NAME + " ( " +
+              DataBaseConstants.GUEST.COLUMNS.ID + " integer primary key autoincrement, " +
+              DataBaseConstants.GUEST.COLUMNS.NAME + " text, " +
+              DataBaseConstants.GUEST.COLUMNS.PRESENCE + " integer);"
     )
   }
   

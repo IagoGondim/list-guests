@@ -2,6 +2,7 @@ package com.iago.guests.repository
 
 import android.content.ContentValues
 import android.content.Context
+import com.iago.guests.constants.DataBaseConstants
 import com.iago.guests.model.GuestModel
 import java.lang.Exception
 
@@ -27,8 +28,8 @@ class GuestRepository private constructor(context: Context) {
       val presence = if (guest.presence) 1 else 0
       
       val values = ContentValues()
-      values.put("name", guest.name)
-      values.put("presence", presence)
+      values.put(DataBaseConstants.GUEST.COLUMNS.NAME, guest.name)
+      values.put(DataBaseConstants.GUEST.COLUMNS.PRESENCE, presence)
       
       db.insert("Guest", null, values)
       true
