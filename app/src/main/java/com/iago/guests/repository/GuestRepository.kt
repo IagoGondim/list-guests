@@ -170,5 +170,4 @@ class GuestRepository private constructor(context: Context) {
     return list
   }
   
-  
 }
