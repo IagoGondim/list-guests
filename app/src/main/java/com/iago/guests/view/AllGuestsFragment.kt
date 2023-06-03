@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.iago.guests.databinding.FragmentAllGuestsBinding
+import com.iago.guests.view.adapter.GuestsAdapter
 import com.iago.guests.viewmodel.AllGuestsViewModel
 
 class AllGuestsFragment : Fragment() {
@@ -22,17 +26,17 @@ class AllGuestsFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     viewModel = ViewModelProvider(this).get(AllGuestsViewModel::class.java)
-    
     _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
-    val root: View = binding.root
-    
-    
-    
+
     viewModel.getAll()
     
+    binding.recyclerAllGuests.layoutManager = LinearLayoutManager(context)
+    
+    binding.recyclerAllGuests.adapter = GuestsAdapter()
     
     observe()
-    return root
+    
+    return binding.root
   }
   
   override fun onDestroyView() {
@@ -41,9 +45,8 @@ class AllGuestsFragment : Fragment() {
   }
   
   private fun observe() {
-    
-    
     viewModel.guests.observe(viewLifecycleOwner) {
+    
     }
   }
   
