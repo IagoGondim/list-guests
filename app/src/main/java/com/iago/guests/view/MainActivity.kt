@@ -15,6 +15,7 @@ import com.iago.guests.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
   
+  
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var binding: ActivityMainBinding
   
@@ -24,12 +25,20 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
     
     setSupportActionBar(binding.appBarMain.toolbar)
-  
+    
     binding.appBarMain.fab.setOnClickListener {
       startActivity(Intent(applicationContext, GuestFormActivity::class.java))
     }
+    
     setupNavigation()
   }
+  
+  // Responsável por criar o menu superior direito (3 pontinhos)
+  /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
+      // Inflate the menu; this adds items to the action bar if it is present.
+      menuInflater.inflate(R.menu.main, menu)
+      return true
+  }*/
   
   override fun onSupportNavigateUp(): Boolean {
     val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -40,10 +49,9 @@ class MainActivity : AppCompatActivity() {
     val drawerLayout: DrawerLayout = binding.drawerLayout
     val navView: NavigationView = binding.navView
     val navController = findNavController(R.id.nav_host_fragment_content_main)
+    
     appBarConfiguration = AppBarConfiguration(
-      setOf(
-        R.id.nav_all_guests, R.id.nav_presents, R.id.nav_absents
-      ), drawerLayout
+      setOf(R.id.nav_all_guests, R.id.nav_presents, R.id.nav_absents), drawerLayout
     )
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)

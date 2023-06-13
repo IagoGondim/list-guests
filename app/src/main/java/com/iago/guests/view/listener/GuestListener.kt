@@ -1,6 +1,6 @@
 package com.iago.guests.view.listener
 
-interface OnGuestListener {
+interface GuestListener {
   fun onClick(id: Int)
   fun onDelete(id: Int)
 }

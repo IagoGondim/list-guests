@@ -1,59 +1,64 @@
 package com.iago.guests.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.iago.guests.databinding.FragmentAllGuestsBinding
-import com.iago.guests.view.adapter.GuestsAdapter
-import com.iago.guests.view.listener.OnGuestListener
-import com.iago.guests.viewmodel.AllGuestsViewModel
+import com.iago.guests.constants.GuestConstants
+import com.iago.guests.databinding.FragmentAllBinding
+import com.iago.guests.view.adapter.GuestAdapter
+import com.iago.guests.view.listener.GuestListener
+import com.iago.guests.viewmodel.GuestsViewModel
 
 class AllGuestsFragment : Fragment() {
   
-  private var _binding: FragmentAllGuestsBinding? = null
+  private var _binding: FragmentAllBinding? = null
   private val binding get() = _binding!!
-  private lateinit var viewModel: AllGuestsViewModel
-  private val adapter = GuestsAdapter()
   
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    viewModel = ViewModelProvider(this).get(AllGuestsViewModel::class.java)
-    _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
+  private lateinit var viewModel: GuestsViewModel
+  private val adapter: GuestAdapter = GuestAdapter()
+  
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, b: Bundle?): View {
+    viewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
+    _binding = FragmentAllBinding.inflate(inflater, container, false)
     
+    // Atribui um layout que diz como a RecyclerView se comporta
     binding.recyclerAllGuests.layoutManager = LinearLayoutManager(context)
     
+    // Define um adapater - Faz a ligação da RecyclerView com a listagem de itens
     binding.recyclerAllGuests.adapter = adapter
     
-    val listener = object : OnGuestListener {
+    val listener = object : GuestListener {
       override fun onClick(id: Int) {
-        Toast.makeText(context, "Fui clicado", Toast.LENGTH_SHORT).show()
+        val intent = Intent(context, GuestFormActivity::class.java)
+        
+        val bundle = Bundle()
+        bundle.putInt(GuestConstants.GUEST.ID, id)
+        
+        intent.putExtras(bundle)
+        startActivity(intent)
       }
       
       override fun onDelete(id: Int) {
         viewModel.delete(id)
         viewModel.getAll()
-  
       }
     }
     
-    adapter.attachListener(listener)
-    
-    viewModel.getAll()
-    
+    // Cria os observadores
     observe()
     
+    adapter.attachListener(listener)
     return binding.root
+  }
+  
+  override fun onResume() {
+    super.onResume()
+    viewModel.getAll()
   }
   
   override fun onDestroyView() {
@@ -61,8 +66,11 @@ class AllGuestsFragment : Fragment() {
     _binding = null
   }
   
+  /**
+   * Cria os observadores
+   */
   private fun observe() {
-    viewModel.guests.observe(viewLifecycleOwner) {
+    viewModel.guestList.observe(viewLifecycleOwner) {
       adapter.updateGuests(it)
     }
   }
