@@ -44,7 +44,7 @@ class PresentsFragment : Fragment() {
       
       override fun onDelete(id: Int) {
         viewModel.delete(id)
-        viewModel.getPresent()
+        viewModel.load(GuestConstants.FILTER.PRESENT)
       }
     }
     
@@ -57,7 +57,7 @@ class PresentsFragment : Fragment() {
   
   override fun onResume() {
     super.onResume()
-    viewModel.getPresent()
+    viewModel.load(GuestConstants.FILTER.PRESENT)
   }
   
   override fun onDestroyView() {

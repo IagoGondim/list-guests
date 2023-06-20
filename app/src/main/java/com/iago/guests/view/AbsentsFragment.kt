@@ -53,7 +53,7 @@ class AbsentsFragment : Fragment() {
       
       override fun onDelete(id: Int) {
         viewModel.delete(id)
-        viewModel.getAbsent()
+        viewModel.load(GuestConstants.FILTER.ABSENT)
       }
     }
     
@@ -69,7 +69,7 @@ class AbsentsFragment : Fragment() {
    */
   override fun onResume() {
     super.onResume()
-    viewModel.getAbsent()
+    viewModel.load(GuestConstants.FILTER.ABSENT)
   }
   
   override fun onDestroyView() {
